@@ -1,0 +1,19 @@
+<template name = "ApplicationLayout">
+
+
+	<header>
+        <div class="container-fluid">
+          {{> yield "headerSection"}}
+        </div>
+	</header>
+    <section>
+        <div class="container">
+          {{> yield "bodySection"}}
+        </div>
+    </section>
+    <footer>
+        {{> yield "footerSection"}}
+    </footer>
+
+
+</template>
