@@ -1,6 +1,6 @@
 Schemas ={}
 
-Article = new Meteor.Collection('article');
+Article = new Mongo.Collection('article');
 
 
 Schemas.Article = new SimpleSchema({

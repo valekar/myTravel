@@ -1,5 +1,5 @@
 Schemas = {};
-Booking = new Meteor.Collection('booking');
+Booking = new Mongo.Collection('booking');
 Schemas.Booking = new SimpleSchema({
    booked_by:{
        type:String,

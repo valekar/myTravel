@@ -14,3 +14,6 @@ houston:admin
 cfs:standard-packages
 cfs:filesystem
 fortawesome:fontawesome
+accounts-password
+cunneen:mailgun
+mrt:bootstrap-alerts

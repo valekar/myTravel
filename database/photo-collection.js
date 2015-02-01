@@ -1,6 +1,6 @@
 Schemas = {};
 
-Photo = new Meteor.Collection("photo");
+Photo = new Mongo.Collection("photo");
 
 
 Schemas.Photos = new SimpleSchema({

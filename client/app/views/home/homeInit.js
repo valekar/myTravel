@@ -20,7 +20,7 @@ Template.homeHeaderTemplate.rendered = function(){
 
 Template.loginTemplate.rendered = function(){
     $('#modalPassword').on('shown.bs.modal', function () {
-        $('#myInput').focus()
+        $('#email').focus();
     });
 
 
@@ -28,4 +28,18 @@ Template.loginTemplate.rendered = function(){
     Session.set('myTemplate','customPasswordTemplate');
 
 
+
+};
+
+Template.homeHeaderTemplate.rendered=function(){
+    Session.set('emailSuccess',false);
+    Session.set('alertTemplate','');
+};
+
+Template.registerTemplate.rendered=function(){
+    $("#new_email").focus();
+};
+
+Template.recoveryTemplate.rendered = function(){
+    $("#recoveryEmail").focus();
 }
