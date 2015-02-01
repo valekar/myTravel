@@ -24,25 +24,26 @@ Template.registerTemplate.events({
         Session.set('myTemplate','customPasswordTemplate');
     },
     'click #RegisterTheUser':function(e,templ){
-
+        Session.set('alertTemplate',null);
        // alert("asdas");
         e.preventDefault();
 
         var attrs = {
             email:$('#new_email').val(),
-            password:$('#new_password').val(),
-            profile:{
-                username: $('#new_name').val()
-            }
+            username:$('#new_name').val()
+
+
         };
 
         console.log(attrs);
-
 
         //
           Meteor.call('addUser',attrs,function(err,result){
          if(err){
          alert(err.reason);
+
+             Session.set('alertMessage',err.reason);
+             Session.set('alertTemplate','alertTemplateNotice');
 
          }
          else if(result){
@@ -67,6 +68,7 @@ Template.recoveryTemplate.events({
         var email = $("#recoveryEmail").val();
         if(!email.length<=0){
             $('#modalPassword').modal('hide');
+            Session.set('alertMessage',"Hello,Sending Email.");
             Session.set('alertTemplate','alertTemplateNotice');
             Accounts.forgotPassword({email:email},function(err){
 
@@ -75,17 +77,16 @@ Template.recoveryTemplate.events({
 
                 }else{
                     //alert("sent");
+                    Session.set('alertMessage',"Email has been sent successfully!!!!!!");
+                    setTimeout(function(){
+                        Session.set('alertTemplate',null);
+                    },1000);
 
-                    Session.set('alertTemplate',null);
-                    Session.set('alertTemplate',null);
+
                     //Session.set('emailSuccess',true);
                 }
             });
         }
-
-
-
-
 
 /*
         Meteor.call('sendEmail',{
@@ -100,15 +101,18 @@ Template.recoveryTemplate.events({
     }
 });
 
-
-
 Template.homeHeaderTemplate.helpers({
     'alertTemplate':function(){
         return Session.get('alertTemplate');
-    },
-    'emailSuccess':function(){
-        return Session.get('emailSuccess');
     }
-})
+
+});
+
+Template.alertTemplateNotice.helpers({
+     'alertMessage':function(){
+    return Session.get('alertMessage');
+}
+});
+
 
 

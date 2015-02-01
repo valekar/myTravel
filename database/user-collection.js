@@ -5,7 +5,7 @@ Schemas.User = new SimpleSchema({
         type: [Object],
         // this must be optional if you also use other login services like facebook,
         // but if you use only accounts-password, then it can be required
-        optional: true
+        optional: false
     },
     "emails.$.address": {
         type: String,
@@ -13,7 +13,19 @@ Schemas.User = new SimpleSchema({
     },
     "emails.$.verified": {
         type: Boolean
+    },
+    createdAt: {
+        type: Date
+    },
+
+    username:{
+        type:String,
+        optional:true
     }
+
+
 });
+
+
 
 Meteor.users.attachSchema(Schemas.User);

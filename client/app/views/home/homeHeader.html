@@ -4,8 +4,9 @@
         <button class="close" aria-label="Close" data-dismiss="alert" type="button">
             <span aria-hidden="true">×</span>
         </button>
-        <strong>Hello!</strong>
-             Sending Email.......
+        <strong></strong>
+
+            {{alertMessage}}
     </div>
     </div>
 </template>
@@ -181,9 +182,6 @@
                     <input type="text" class="form-control  input-sm" name="" id="new_name" placeholder="Your Name">
                 </div>
 
-                <div class="form-group">
-                    <input type="password" class="form-control  input-sm" name="" id="new_password" placeholder="Your password">
-                </div>
             	<button type="button" class="btn btn-primary" id="RegisterTheUser">Register Me!</button>
                 <button type="submit" class="btn btn-primary pull-right" id = "registerBackButton">back</button>
             </form>

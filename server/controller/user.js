@@ -1,31 +1,44 @@
 Meteor.methods({
     addUser:function(attrs){
-        var userObject = {
-            'email':attrs.email,
-            'password':attrs.password,
-
-            'profile':{
-                username:attrs.personalName
-            }
-        };
-
 
         console.log(attrs);
 
 
         check(attrs,{
             email:String,
-            password:String,
-            profile:{
-               username:String
-            }
+            username:String
+
+
 
         });
+        var password = Fake.word();
+        console.log(password);
+
+        attrs.password = password;
+
+        //attrs = _extend(attrs,{password:password});
 
         var user_id = Accounts.createUser(
-            userObject
-
+            attrs
         );
+
+        console.log(user_id);
+        this.unblock();
+
+        Accounts.sendResetPasswordEmail(user_id,attrs.email);
+
+
+
+      /*  Meteor.Mailgun.send({
+            to:attrs.email,
+            from: "myTravelEx@mytravelex.com",
+            subject: "Your password",
+            text: "Your password is ::--> "+password+"",
+            html: 'With Best wishes it&apos;s  <span style="color:red">change your password plz</span> too.'+password
+        });*/
+        console.log("email sent!");
+
+        //Accounts.setPassword(user_id,password)
 
         return user_id;
 
@@ -70,6 +83,7 @@ Meteor.startup(function(){
     Accounts.emailTemplates.verifyEmail.text = function(user, url) {
         return 'click on the following link to verify your email address: ' + url;
     };
+
 
 
     Meteor.Mailgun.config({

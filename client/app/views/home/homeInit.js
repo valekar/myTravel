@@ -32,7 +32,7 @@ Template.loginTemplate.rendered = function(){
 };
 
 Template.homeHeaderTemplate.rendered=function(){
-    Session.set('emailSuccess',false);
+    Session.set('alertMessage','');
     Session.set('alertTemplate','');
 };
 
@@ -42,4 +42,8 @@ Template.registerTemplate.rendered=function(){
 
 Template.recoveryTemplate.rendered = function(){
     $("#recoveryEmail").focus();
-}
+};
+
+
+
+
