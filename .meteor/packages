@@ -11,3 +11,6 @@ iron:router
 twbs:bootstrap-noglyph
 aldeed:collection2
 houston:admin
+cfs:standard-packages
+cfs:filesystem
+fortawesome:fontawesome

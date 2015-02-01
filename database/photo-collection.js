@@ -3,7 +3,7 @@ Schemas = {};
 Photo = new Meteor.Collection("photo");
 
 
-Schemas.Photos = new SimpleScehma({
+Schemas.Photos = new SimpleSchema({
    caption :{
        type:String,
        optional:false,

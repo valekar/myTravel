@@ -1,39 +1,205 @@
 <template name = "homeHeaderTemplate">
 
-    <div class="my-header">
-    <div class="container">
-        <h2> <img src="index.jpeg" width="50px" height="50px">
-         myTravel Exp</h2>
-    </div>
-    </div>
-    
+    <section class="Logo-section">
+        <div class="my-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <h2> <img src="index.jpeg" width="50px" height="50px">
+                            myTravel Ex<strong><small>[perience]</small></strong></h2>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="pull-right">
+                            <h4 class="text-center"><strong>Login With</strong></h4>
+                            <button type="button" class="btn btn-sm bg-info"
+                                    data-toggle="tooltip" data-placement="bottom" title="Sign In with Facebook">
+                                <i class="fa fa-sign-in fa-2x"></i>
+                                <i class="fa fa-facebook-square fa-2x"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm bg-info"
+                                    data-toggle="tooltip" data-placement="bottom" title="Sign In with Twitter">
+                                <i class="fa fa-sign-in fa-2x"></i>
+                                <i class="fa fa-twitter fa-2x"></i>
+                            </button>
+                            <!-- Load loginWithPasswordTemplate-->
+                            <button type="button" class="btn btn-sm bg-info"  data-target="#modalPassword"
+                                    data-toggle="modal">
+                                    <i class="fa fa-sign-in fa-2x"></i>
+                                <i class="fa fa-unlock fa-2x"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="myNav">
-    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Home</a>
+                        </div>
 
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Home</a>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                            </ul>
+
+
+                        </div><!-- /.navbar-collapse -->
+                    </nav>
+                </div>
+
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                </ul>
-
-
-            </div><!-- /.navbar-collapse -->
-        </nav>
-
+        </div>
     </div>
+
+    <section class="modalGroup">
+        {{> loginTemplate}}
+    </section>
+
+</template>
+
+
+<template name = "loginTemplate">
+    <!--Login with password modalPassword-->
+    <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+                <!--Dynamically show the template based upon the session variable "myTemplate"-->
+                {{> UI.dynamic template=myTemplate}}
+
+            </div>
+        </div>
     </div>
+</template>
+
+<template name = "customPasswordTemplate">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h3>Login to myTravelEx.com</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <!--Custom Login Password Section-->
+            <section class="customPassword">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <form action="" method="POST" role="form" class="well well-sm">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-sm" name="eid" id="email" placeholder="Email">
+
+                        </div>
+                        <div class="form-group">
+
+                            <input type="password" class="form-control input-sm" name="passwd" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login </button>
+                        <a href="#"  id ="forgotPasswordLink">ForgotPassword</a>
+                    </form>
+                </div>
+            </section>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>OR</h3>
+            </div>
+            <!--Identity provider section-->
+            <section class="IdentityProviders">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <button type="button" class="btn btn-sm bg-warning  btn-block">
+                        <strong>Login With</strong>
+                        <i class="fa fa-facebook-square fa-2x"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm bg-warning  btn-block">
+                        <strong>Login With</strong>
+                        <i class="fa fa-twitter fa-2x"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--Section for registration button-->
+    <section class="footer">
+        <div class="modal-footer">
+            New To myTravelEx.com?
+            <a href="#" class="btn btn-primary" id = "newRegistration">Register</a>
+        </div>
+    </section>
+
+</template>
+
+
+<template name = "registerTemplate">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h3>Register to myTravelEx.com</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <form action="" method="POST" role="form" class="well well-sm">
+
+            	<div class="form-group">
+
+            		<input type="email" class="form-control  input-sm" name="" id="" placeholder="Your Email">
+            	</div>
+
+
+                <div class="form-group">
+                    <input type="password" class="form-control  input-sm" name="" id="" placeholder="password">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control  input-sm" name="" id="" placeholder="Confirm password">
+                </div>
+            	<button type="submit" class="btn btn-primary">Register Me!</button>
+                <button type="submit" class="btn btn-primary pull-right" id = "registerBackButton">back</button>
+            </form>
+
+
+        </div>
+    </div>
+</template>
+
+
+<template name = "forgotTemplate">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h3>Forgot Your Password?</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <form action="" method="POST" role="form" class="well well-sm">
+
+                <div class="form-group">
+
+                    <input type="email" class="form-control  input-sm" name="" id="" placeholder="Your Email">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Reset myPassword</button>
+                <button type="submit" class="btn btn-primary pull-right" id = "forgotBackButton">back</button>
+            </form>
+
+
+        </div>
+    </div>
+
 </template>

@@ -1,4 +1,5 @@
 Schemas = {};
+Booking = new Meteor.Collection('booking');
 Schemas.Booking = new SimpleSchema({
    booked_by:{
        type:String,
@@ -18,6 +19,6 @@ Schemas.Booking = new SimpleSchema({
 });
 
 
-Booking = new Meteor.Collection('booking');
 
-Schemas.attachSchema(Schemas.Booking);
+
+Booking.attachSchema(Schemas.Booking);
