@@ -10,6 +10,23 @@ Template.customPasswordTemplate.events({
         Session.set('myTemplate','registerTemplate');
 
     },
+    'click #loginUser':function(e,templ){
+        e.preventDefault();
+        var email_id = $("#loginEmail").val();
+        var password = $("#loginPassword").val();
+        Meteor.loginWithPassword(email_id,password,function(err){
+            if(err){
+                alert("Error :: " + err);
+            }
+
+        });
+
+
+        if(Meteor.userId()){
+            alert("loggedIN");
+        }
+
+    },
 
 
     'click #forgotPasswordLink':function(e,templ){
@@ -26,12 +43,21 @@ Template.registerTemplate.events({
     'click #RegisterTheUser':function(e,templ){
         Session.set('alertTemplate',null);
        // alert("asdas");
+       // var message = '<p class="loading-message">Loading Message</p>';
+      //  var spinner = '<div class="sk-spinner sk-spinner-rotating-plane"></div>';
         e.preventDefault();
-
+        this.loading = window.pleaseWait({
+            logo: '/images/Meteor-logo.png',
+            backgroundColor: '#7f8c8d',
+            loadingHtml: message + spinner
+        });
         var attrs = {
             email:$('#new_email').val(),
-            username:$('#new_name').val()
 
+            profile:{
+                personal_name:$('#new_name').val()
+            },
+            created_at:new Date().getDate()+""
 
         };
 
@@ -40,14 +66,21 @@ Template.registerTemplate.events({
         //
           Meteor.call('addUser',attrs,function(err,result){
          if(err){
-         alert(err.reason);
-
+         //alert(err.reason);
+             // manually remove loading for demo
+             //var loading = this.loading;
+            // loading.finish();
              Session.set('alertMessage',err.reason);
              Session.set('alertTemplate','alertTemplateNotice');
 
          }
          else if(result){
          console.log(result);
+            // var loading = this.loading;
+             //loading.finish();
+             $('#modalPassword').modal('hide');
+             Session.set('alertMessage',"Email has been sent for further instructions");
+             Session.set('alertTemplate','alertTemplateNotice');
          // alert(result);
          //Router.go('/profile');
          }

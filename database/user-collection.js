@@ -1,3 +1,4 @@
+/*
 Schemas = {};
 
 Schemas.User = new SimpleSchema({
@@ -6,6 +7,7 @@ Schemas.User = new SimpleSchema({
         // this must be optional if you also use other login services like facebook,
         // but if you use only accounts-password, then it can be required
         optional: false
+/*
     },
     "emails.$.address": {
         type: String,
@@ -14,8 +16,9 @@ Schemas.User = new SimpleSchema({
     "emails.$.verified": {
         type: Boolean
     },
-    createdAt: {
-        type: Date
+    created_at: {
+        type: String,
+        optional:true
     },
 
     username:{
@@ -25,7 +28,8 @@ Schemas.User = new SimpleSchema({
 
 
 });
+*/
 
 
 
-Meteor.users.attachSchema(Schemas.User);
+/*Meteor.users.attachSchema(Schemas.User);*/

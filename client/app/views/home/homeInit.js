@@ -20,7 +20,7 @@ Template.homeHeaderTemplate.rendered = function(){
 
 Template.loginTemplate.rendered = function(){
     $('#modalPassword').on('shown.bs.modal', function () {
-        $('#email').focus();
+        $('#loginEmail').focus();
     });
 
 
@@ -34,6 +34,16 @@ Template.loginTemplate.rendered = function(){
 Template.homeHeaderTemplate.rendered=function(){
     Session.set('alertMessage','');
     Session.set('alertTemplate','');
+
+
+
+};
+
+
+Template.homeHeaderTemplate.created = function(){
+    if(Accounts.onResetPasswordLink){
+        Router.go('/profile');
+    }
 };
 
 Template.registerTemplate.rendered=function(){

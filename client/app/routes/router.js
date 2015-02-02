@@ -1,4 +1,10 @@
 Router.route('/',{
+
+    onWait:function(){
+
+
+        },
+
         action:function(){
 
             this.render('homeHeaderTemplate',{to:'headerSection'});

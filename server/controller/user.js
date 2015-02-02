@@ -6,9 +6,11 @@ Meteor.methods({
 
         check(attrs,{
             email:String,
-            username:String
 
-
+            created_at:String,
+            profile:{
+                personal_name:String
+            }
 
         });
         var password = Fake.word();
@@ -29,7 +31,7 @@ Meteor.methods({
 
 
 
-      /*  Meteor.Mailgun.send({
+     /*   Meteor.Mailgun.send({
             to:attrs.email,
             from: "myTravelEx@mytravelex.com",
             subject: "Your password",
@@ -38,7 +40,7 @@ Meteor.methods({
         });*/
         console.log("email sent!");
 
-        //Accounts.setPassword(user_id,password)
+        Accounts.setPassword(user_id,password);
 
         return user_id;
 
