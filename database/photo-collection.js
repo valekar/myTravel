@@ -25,8 +25,3 @@ Schemas.Photos = new SimpleSchema({
 Photo.attachSchema(Schemas.Photos);
 
 
-/**************************/
-Photo_Uploads = new FS.Collection("photo_uploads", {
-    stores: [new FS.Store.FileSystem("photo_uploads", {path: "~/projectPhotoUploads"})]
-});
-/**************************/

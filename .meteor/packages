@@ -5,17 +5,23 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 iron:router
 twbs:bootstrap-noglyph
 aldeed:collection2
 houston:admin
-cfs:standard-packages
-cfs:filesystem
 fortawesome:fontawesome
 accounts-password
 cunneen:mailgun
 mrt:bootstrap-alerts
 anti:fake
 pcel:loading
+accounts-facebook
+accounts-github
+accounts-ui
+service-configuration
+accounts-google
+accounts-twitter
+cfs:standard-packages
+cfs:filesystem
+autopublish

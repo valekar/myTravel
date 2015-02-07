@@ -1,51 +1,5 @@
 Meteor.methods({
-    addUser:function(attrs){
 
-        console.log(attrs);
-
-
-        check(attrs,{
-            email:String,
-
-            created_at:String,
-            profile:{
-                personal_name:String
-            }
-
-        });
-        var password = Fake.word();
-        console.log(password);
-
-        attrs.password = password;
-
-        //attrs = _extend(attrs,{password:password});
-
-        var user_id = Accounts.createUser(
-            attrs
-        );
-
-        console.log(user_id);
-        this.unblock();
-
-        Accounts.sendResetPasswordEmail(user_id,attrs.email);
-
-
-
-     /*   Meteor.Mailgun.send({
-            to:attrs.email,
-            from: "myTravelEx@mytravelex.com",
-            subject: "Your password",
-            text: "Your password is ::--> "+password+"",
-            html: 'With Best wishes it&apos;s  <span style="color:red">change your password plz</span> too.'+password
-        });*/
-        console.log("email sent!");
-
-        Accounts.setPassword(user_id,password);
-
-        return user_id;
-
-
-    },
     sendEmail: function (mailFields) {
         console.log("about to send email...");
         check([mailFields.to, mailFields.from, mailFields.subject, mailFields.text, mailFields.html], [String]);

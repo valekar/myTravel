@@ -1,0 +1,45 @@
+<template name = "adminBodyTemplate">
+
+    {{# if isAdmin}}
+
+    {{> photosTemplate}}
+    {{/if}}
+this is admin!!
+</template>
+
+
+
+
+<template name = "photosTemplate">
+    <div class="page-header">
+        <h1>Admin<small>panel</small></h1>
+        <input type="file" id="fileMe" class=" input-sm">
+        <button id ="uploadme" class="btn btn-primary">Uploadme</button>
+        <button id="remove" class="btn btn-danger">Remove</button>
+
+    </div>
+
+    <div class="row">
+        {{#each uploads}}
+            <div class="btn-separator">
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 well well-sm">
+
+                <img src="{{url}}" alt="alt-text" class="img-responsive" />
+                <div class="checkbox">
+                    <label>
+                        <strong>{{_id}}</strong>
+                        <input type="radio" value="{{_id}}" id="removeCheckbox" name="removeCheckbox">
+
+                    </label>
+                </div>
+            </div>
+            <div class="btn-separator">
+
+            </div>
+
+        {{/each}}
+    </div>
+
+</template>

@@ -1,0 +1,118 @@
+<template name = "alertTemplateNotice">
+    <div id="message" class="text-center">
+        <div class="alert alert-warning alert-dismissible fade in" role="alert" >
+            <button class="close" aria-label="Close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">×</span>
+            </button>
+            <strong></strong>
+
+            {{alertMessage}}
+        </div>
+    </div>
+</template>
+
+
+<template name = "commonHeaderTemplate">
+    {{#if currentUser}}
+        {{>loggedInTemplate}}
+
+    {{else}}
+        {{>loggedOutTemplate}}
+
+    {{/if}}
+
+</template>
+
+
+
+<template name = "loggedInTemplate">
+    {{>logoTemplate}}
+    <div class="myNav">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-default" role="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Accounts</a></li>
+                                <li><a href="#" id = "loggedOut">Logout</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name = "loggedOutTemplate">
+    {{>logoTemplate}}
+    <div class="myNav">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">Home</a>
+                        </div>
+
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name = "logoTemplate">
+    <section class="Logo-section">
+        <div class="my-header">
+            {{> UI.dynamic template=alertTemplate}}
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <h2> <img src="index.jpeg" width="50px" height="50px">
+                            myTravel Ex<strong><small>[perience]</small></strong></h2>
+                    </div>
+
+                    {{#if currentUser}}
+                        <!--Do nothing-->
+                    {{else}}
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <div class="pull-right">
+                                <h4 class="text-center"><strong>Login With</strong></h4>
+                                <button type="button" class="btn btn-sm bg-info" id = "facebookLogin"
+                                        data-toggle="tooltip" data-placement="bottom" title="Sign In with Facebook">
+
+                                    <i class="fa fa-facebook-square fa-2x"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm bg-info" id = "twitterLogin"
+                                        data-toggle="tooltip" data-placement="bottom" title="Sign In with Twitter">
+
+                                    <i class="fa fa-twitter fa-2x"></i>
+                                </button>
+                                <!-- Load loginWithPasswordTemplate-->
+                                <button type="button" class="btn btn-sm bg-info" id = "gmailLogin"
+                                        data-toggle="tooltip" data-placement="bottom" title="Sign In with Google+">
+
+                                    <i class="fa fa-google fa-2x"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    {{/if}}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
