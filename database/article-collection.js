@@ -29,6 +29,11 @@ Schemas.Article = new SimpleSchema({
         type:Date,
         optional:false,
         label:"Created Date"
+    },
+    summary:{
+        type:String,
+        optional:false,
+        label:"Home page summary"
     }
 });
 
