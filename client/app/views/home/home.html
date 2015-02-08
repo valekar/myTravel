@@ -1,14 +1,20 @@
 <template name = "homeBodyTemplate">
+{{#momentum plugin='right-to-left'}}
+    {{#if showArticle}}
 
-    <div class="panel panel-default" >
+            {{> showArticleTemplate}}
 
-        <div class="panel-body " >
-        {{>headerArticleTemplate}}
-            <hr>
-        {{> articleTemplate}}
-    </div>
-    </div>
+    {{else}}
 
+        <div class="panel panel-default" >
+            <div class="panel-body " >
+                {{>headerArticleTemplate}}
+                <hr>
+                {{> articleTemplate}}
+            </div>
+        </div>
+
+    {{/if}}
+{{/momentum}}
 </template>
-
 

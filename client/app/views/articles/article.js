@@ -7,8 +7,24 @@ Template.articleTemplate.helpers({
 
 Template.headerArticleTemplate.helpers({
 
-    headerArticle:function(){
-    return Article.findOne();
-}
+/*
+    'headerArticle':function(){
 
+
+
+
+        //HeaderArticle = $.extend(HeaderArticle,)
+
+        return HeaderArticle;
+    }
+*/
+
+
+});
+
+Template.showArticleTemplate.events({
+   'click #goBacktoHome':function(e,templ){
+        Session.set("showArticle",false);
+        Router.go("/");
+   }
 });

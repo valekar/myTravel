@@ -25,3 +25,6 @@ accounts-twitter
 cfs:standard-packages
 cfs:filesystem
 autopublish
+percolate:momentum
+multiply:iron-router-progress
+okgrow:iron-router-autoscroll

@@ -13,7 +13,14 @@
 .myNav{
     margin-top: -1% !important;
 }
-
+#iron-router-progress {
+    background-color : #000000;
+    box-shadow       : 5px 5px 5px #000000;
+    width:200%
+}
+#iron-router-progress.spinner:before {
+    border-color : #000000;
+}
 
 .my-footer {
 

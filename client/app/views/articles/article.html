@@ -1,16 +1,16 @@
 <template name = "headerArticleTemplate">
-
-
-
-
                    <div class="panel-body " >
-
+                        {{ headerArticle}}
                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                           <img src="/home-bg.jpg" class="img-responsive " />
+                           {{#if headerArticle.photoUrl.isNAN  }}
+                               <img src="/placeholder.png" class="img-responsive" />
+                               {{else}}
+                               <img src={{headerArticle.photoUrl}} class="img-responsive" />
+                            {{/if}}
                            <div class="post-content">
-                                <div class="hidden-xs herotext">
+                                <div class="hidden-xs ">
 
-                                    <a href="#" class="my-font"><strong><h1>Lorem ipsum dolor sit amet</h1></strong></a>
+                                    <a href="/article/{{headerArticle._id}}" class="my-font"><strong><h1>Lorem ipsum dolor sit amet</h1></strong></a>
                                 </div>
 
 
@@ -56,3 +56,22 @@
 
 
 
+<template name = "showArticleTemplate">
+    singularity test
+
+
+    
+        <div class="media">
+        	<a class="pull-left" href="#">
+        		<img class="media-object" src={{article.photoUrl}} alt="Image">
+        	</a>
+        	<div class="media-body">
+        		<h4 class="media-heading">{{article.title}}</h4>
+        		<p> {{article.content}}</p>
+        	</div>
+        </div>
+    
+    
+    <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
+
+</template>

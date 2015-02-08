@@ -1,14 +1,15 @@
 <template name = "adminBodyTemplate">
-
+    {{#momentum plugin='right-to-left'}}
     {{# if isAdmin}}
 
     {{> photosTemplate}}
         {{else}}
-    {{>homeBodyTemplate}}
 
+             {{>homeBodyTemplate}}
 
 
     {{/if}}
+    {{/momentum}}
 this is admin!!
 </template>
 
@@ -34,7 +35,8 @@ this is admin!!
                 <img src="{{url}}" alt="alt-text" class="img-responsive" />
                 <div class="checkbox">
                     <label>
-                        <strong>{{_id}}</strong>
+                        <strong>ID of uploaded file {{_id}}</strong><hr>
+                        <string>URL of the Photo ::--> {{url}}</string>
                         <input type="radio" value="{{_id}}" id="removeCheckbox" name="removeCheckbox">
 
                     </label>
