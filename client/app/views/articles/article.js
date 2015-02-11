@@ -1,9 +1,26 @@
 Template.articleTemplate.helpers({
    articles:function(){
-       return Article.find().fetch();
+
+       var articles  = Article.find().fetch();
+
+       for(var i=0;articles.length();i++){
+           //var article =  articles[i];
+           //articles[i]= $.extend(articles[i],article);
+
+               console.log("ulala");
+               var photoUrl = ArticlePhoto.find({articleId:articles[i]._id}).fetch()[0].photoUrl;
+               articles[i].photoUrl = photoUrl;
+
+       }
+
+
+       return articles
    }
 
 });
+
+
+
 
 Template.headerArticleTemplate.helpers({
 

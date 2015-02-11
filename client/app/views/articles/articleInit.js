@@ -5,3 +5,7 @@ Template.headerArticleTemplate.rendered = function(){
     }
 
 };
+
+Template.photosTemplate.rendered=function(){
+  Session.set('fileObj',false);
+};

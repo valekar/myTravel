@@ -19,9 +19,56 @@ this is admin!!
 <template name = "photosTemplate">
     <div class="page-header">
         <h1>Admin<small>panel</small></h1>
-        <input type="file" id="fileMe" class=" input-sm">
-        <button id ="uploadme" class="btn btn-primary">Uploadme</button>
-        <button id="remove" class="btn btn-danger">Remove</button>
+        <div class="table-responsive">
+        	<table class="table table-bordered table-hover">
+        		<thead>
+
+        			<tr>
+                        <th>choose the article</th>
+        				<th>Article Title</th>
+        			</tr>
+
+        		</thead>
+        		<tbody>
+                {{#each articles}}
+
+
+        			<tr>
+                        <td id = "articleId"><input type = "radio" name = "articleIdRadio" value = {{_id}}>{{_id}}</td>
+        				<td>{{title}}</td>
+        			</tr>
+                    {{/each}}
+        		</tbody>
+
+        	</table>
+        </div>
+        <table class="table table-bordered table-hover">
+        	<thead>
+        		<tr>
+        			<th>Label</th>
+                    <th>your input</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr>
+                    <td>Photo caption</td>
+        			<td><input type="type" id="photoCaption"></td>
+        		</tr>
+                <tr>
+                    <td>select your file</td>
+                    <td><input type="file" id="fileMe" class="input"></td>
+                </tr>
+
+                <tr>
+
+                    <button id ="uploadme" class="btn btn-primary">Uploadme</button>
+                    <button id="remove" class="btn btn-danger">Remove</button>
+                    <button class="btn btn-primary" id = "setMapping">Set Mapping</button>
+
+                </tr>
+        	</tbody>
+        </table>
+
 
     </div>
 
@@ -35,8 +82,7 @@ this is admin!!
                 <img src="{{url}}" alt="alt-text" class="img-responsive" />
                 <div class="checkbox">
                     <label>
-                        <strong>ID of uploaded file {{_id}}</strong><hr>
-                        <string>URL of the Photo ::--> {{url}}</string>
+                        DO you want to remove this photo??
                         <input type="radio" value="{{_id}}" id="removeCheckbox" name="removeCheckbox">
 
                     </label>
