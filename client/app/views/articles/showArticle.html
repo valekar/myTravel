@@ -58,10 +58,7 @@
     <hr>
 
     <!-- this is the list of comments section-->
-    {{#each articleComments}}
-        {{commentContent}}
-        <img src = "{{userPictureUrl}}" height = "100px" width = "100px">
-    {{/each}}
+
 
 
     <div class="container">
@@ -70,32 +67,35 @@
 
                 <section class="comment-list">
                     <!-- First Comment -->
+                    {{#each articleComments}}
+
                     <article class="row">
                         <div class="col-md-2 col-sm-2 hidden-xs">
                             <figure class="thumbnail">
-                                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                                <figcaption class="text-center">username</figcaption>
+                                <img class="img-responsive" src="{{userPictureUrl}}" />
+                                <figcaption class="text-center">{{userName}}</figcaption>
                             </figure>
                         </div>
                         <div class="col-md-10 col-sm-10">
                             <div class="panel panel-default arrow left">
                                 <div class="panel-body">
                                     <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                        <div class="comment-user"><i class="fa fa-user"></i> {{userName}}</div>
+                                        <time class="comment-date" datetime="{{created_at}}"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
                                     </header>
                                     <div class="comment-post">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            {{commentContent}}
                                         </p>
                                     </div>
-                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                    <!--<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
                                 </div>
                             </div>
                         </div>
                     </article>
+                    {{/each}}
                     <!-- Second Comment Reply -->
-                    <article class="row">
+                   <!-- <article class="row">
                         <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
                             <figure class="thumbnail">
                                 <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article>-->
 
 
                 </section>
