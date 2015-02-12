@@ -69,3 +69,9 @@ Template.loggedInTemplate.events({
 
     }
 });
+
+
+Template.loggedInTemplate.helpers({
+
+
+});

@@ -43,7 +43,7 @@ Template.photosTemplate.events({
         var photoCaption = $('#photoCaption').val();
 
         var photoId = Photo.insert({url:url,photo_uploader_id:fileId,caption:photoCaption});
-        ArticlePhoto.insert({articleId:articleId,photoId:photoId,photoUrl:url});
+        ArticlePhoto.insert({articleId:articleId,photoId:photoId,photoUrl:url,created_at:new Date()+""});
 
     }
 });

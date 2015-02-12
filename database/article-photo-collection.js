@@ -14,6 +14,10 @@ Schemas.ArticlePhoto = new SimpleSchema({
     photoUrl:{
         type:String,
         optional:false
+    },
+    created_at:{
+        type:String,
+        optional:false
     }
 });
 

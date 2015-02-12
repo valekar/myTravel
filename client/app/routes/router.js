@@ -8,14 +8,23 @@ Router.map(function(){
            // console.log(article);
            // article = {};
             var article = Article.find({_id:articleId}).fetch()[0];
-            article= $.extend(article,article);
+            //article= $.extend(article,article);
+            //  console.log(article);
             if(article){
-                var photoUrl = ArticlePhoto.find({articleId:article._id}).fetch()[0].photoUrl;
+                var arPhArray =ArticlePhoto.find({articleId:article._id}).fetch();
+                console.log(arPhArray);
+                var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
                 article.photoUrl = photoUrl;
             }
 
             tempData = {article:article};
+            //hide the home page articles
+            Session.set("headerArticle",false);
+            //show the single page article
             Session.set("showArticle",true);
+            //this is used for comments
+            Session.set("articleId",null);
+            Session.set("articleId",articleId);
             return tempData;
         },
 
@@ -47,14 +56,17 @@ Router.map(function(){
         },
 
         data:function(){
-            Session.set("showArticle",false);
+            //Session.set("showArticle",false);
+            //Session.set('headerArticle',true);
             var article =  Article.find({featured:true}).fetch()[0];
-            console.log(article);
+            //console.log(article);
             headerArticles = {};
             headerArticles= $.extend(headerArticles,article);
             if(article){
-                var photoUrl = ArticlePhoto.find({articleId:article._id}).fetch()[0].photoUrl;
+                var arPhArray =ArticlePhoto.find({articleId:article._id}).fetch();
+                var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
                 headerArticles.photoUrl = photoUrl;
+                //console.log(headerArticles);
             }
 
             tempData = {headerArticle:headerArticles};
@@ -80,7 +92,7 @@ Router.map(function(){
                 this.layout('AdminLayout');
             }
             else{
-                this.redirect("/");
+                this.redirect("/",{replace:true});
             }
 
         }

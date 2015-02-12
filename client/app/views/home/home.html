@@ -1,20 +1,29 @@
 <template name = "homeBodyTemplate">
-{{#momentum plugin='right-to-left'}}
-    {{#if showArticle}}
+{{#momentum plugin='fade'}}
+    {{#if headerArticle}}
 
-            {{> showArticleTemplate}}
+        {{> featuredTemplate}}
+     {{/if}}
 
-    {{else}}
-
-        <div class="panel panel-default" >
-            <div class="panel-body " >
-                {{>headerArticleTemplate}}
-                <hr>
-                {{> articleTemplate}}
-            </div>
-        </div>
-
-    {{/if}}
 {{/momentum}}
+{{#momentum plugin='fade'}}
+{{#if showArticle}}
+    {{> showArticleTemplate}}
+
+{{/if}}
+{{/momentum}}
+
 </template>
 
+<template name = "featuredTemplate" >
+
+    <div class="panel panel-default" >
+        <div class="panel-body " >
+            {{>headerArticleTemplate}}
+            <hr>
+            {{> articleTemplate}}
+        </div>
+    </div>
+
+
+</template>
