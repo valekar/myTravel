@@ -1,15 +1,13 @@
 /*Show the list all the articles*/
+
+
+
 Template.articleTemplate.helpers({
    articles:function(){
 
-       var articles  = Article.find().fetch();
+       var articles  = Article.find({featured:false},{sort:{created_at:-1},limit:10}).fetch();
 
        for(var i=0;i<articles.length;i++){
-           //var article =  articles[i];
-           //articles[i]= $.extend(articles[i],article);
-
-           //console.log("ulala");
-           //var photoUrl = ArticlePhoto.find({articleId:articles[i]._id}).fetch()[0].photoUrl;
            var arPhArray =ArticlePhoto.find({articleId:articles[i]._id}).fetch();
            var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
             console.log(articles[i]);
@@ -64,6 +62,7 @@ Template.showArticleTemplate.events({
                 Session.set('userComment',userComment);
                 //var userComment = Session.get('userComment');
                 //alert("submitting" + userComment);
+                $("#userComment").val(" ");
                 commentLogic();
 
             }
@@ -87,6 +86,12 @@ Template.showArticleTemplate.events({
 
             }
         });
+    },
+    'click #removeComment':function(e,templ){
+            console.log(this);
+            if(Meteor.userId())
+            var comment = Comment.findOne({_id:this._id,userId:Meteor.userId()});
+            Comment.remove({_id:comment._id});
     }
 });
 
@@ -104,7 +109,12 @@ Template.showArticleTemplate.helpers({
     },
     'articleComments':function(){
         //Sesion.get('articleid') is set in iron router
-        var comments = Comment.find({articleId:Session.get('articleId')}).fetch();
+        var comments =
+            Comment.
+                find({articleId:Session.get('articleId')},{sort:{created_at:-1}},
+                {skip:(2 > 0 ? ((2-1)*5) : 0)},{limit:5}).
+
+                fetch();
 
        /* for(var i = 0;i<comment.length;i++){
             var user = Meteor.users.find({_id:comment.userId}).fetch()[0];
@@ -122,6 +132,6 @@ function commentLogic(){
     var user = Meteor.user();
     var comment = Comment.insert({userId:user._id,userName:user.profile.name,
         userPictureUrl: user.profile.picture,articleId:Session.get('articleId'),
-        repliedToId:null,commentContent:userComment,created_at:new Date()+""});
-    alert("commentId"+ comment);
+        repliedToId:null,commentContent:userComment,created_at:moment().format('MMMM Do YYYY, h:mm:ss a')+""});
+    //alert("commentId"+ comment);
 }

@@ -3,6 +3,13 @@ Router.map(function(){
     /*Article mapping /article/123*/
     this.route("/article/:_id",{
 
+        waitOn:function(){
+          return [Meteor.subscribe('articles'),
+                  Meteor.subscribe('articlePhotos'),
+                  Meteor.subscribe('photos'),
+                  Meteor.subscribe('articleComments')]
+        },
+
         data:function(){
             var articleId = this.params._id;
            // console.log(article);
@@ -39,25 +46,33 @@ Router.map(function(){
         /*Home page routing / */
     this.route('/',{
 
-        onWait:function(){
-
+        waitOn:function(){
+            Session.set('fromArticleNo',0);
+          //  Session.set('noOfArticles',Article.find().count());
+            return [/*Meteor.subscribe('articles',Session.get('fromArticleNo')),*/
+                Meteor.subscribe('articlePhotos'),
+                Meteor.subscribe('photos'),
+                Meteor.subscribe('articleComments'),
+                Meteor.subscribe('adminUser',Meteor.userId())]
 
         },
         onBeforeAction: function () {
 
             if(Meteor.user()){
-                if(Meteor.userId() ===  Houston._admins.find().fetch()[0].user_id)
+                if(Houston._admins.find().fetch().length>0)
                     this.redirect('/custom_admin/photos');
                 else
                     this.next();
             }else{
+
                 this.next();
             }
         },
 
         data:function(){
             //Session.set("showArticle",false);
-            //Session.set('headerArticle',true);
+            Session.set('headerArticle',true);
+
             var article =  Article.find({featured:true}).fetch()[0];
             //console.log(article);
             headerArticles = {};
@@ -84,6 +99,15 @@ Router.map(function(){
         /*custom admin mapping /custom_admin/photos*/
     this.route('/custom_admin/photos',{
 
+        waitOn:function(){
+            return [Meteor.subscribe('articles'),
+                    Meteor.subscribe('articlePhotos'),
+                    Meteor.subscribe('photos'),
+                    Meteor.subscribe('articleComments'),
+                    Meteor.subscribe('photoUploads'),
+                Meteor.subscribe('adminUser',Meteor.userId())
+                    ]
+        },
         action:function(){
             if(Meteor.user()){
                 this.render('commonHeaderTemplate',{to:'headerAdminSection'});

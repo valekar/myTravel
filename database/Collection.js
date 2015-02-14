@@ -39,3 +39,6 @@ Photo_Uploads = new FS.Collection("uploads", {
 /**************************/
 
 
+
+
+//Post = new Mongo.Collection('post');

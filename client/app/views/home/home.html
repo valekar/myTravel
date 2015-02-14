@@ -2,7 +2,8 @@
 {{#momentum plugin='fade'}}
     {{#if headerArticle}}
 
-        {{> featuredTemplate}}
+        {{> allArticlesTemplate}}
+
      {{/if}}
 
 {{/momentum}}
@@ -15,15 +16,21 @@
 
 </template>
 
-<template name = "featuredTemplate" >
-
+<template name = "allArticlesTemplate" >
+    {{#if headerArticle}}
     <div class="panel panel-default" >
         <div class="panel-body " >
             {{>headerArticleTemplate}}
             <hr>
             {{> articleTemplate}}
         </div>
+        <nav>
+            <ul class="pager">
+                <li class = ""><a href="#" id="articlePrevious" class = "">Previous</a></li>
+                <li class=""><a href="#" id = "articleNext" class="">Next</a></li>
+            </ul>
+        </nav>
     </div>
 
-
+{{/if}}
 </template>

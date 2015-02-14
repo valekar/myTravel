@@ -1,8 +1,6 @@
 Schemas ={};
 
 Article = new Mongo.Collection('article');
-//Article = new Meteor.Pagination("article");
-//var xx = Article.insert({title:"dummy",photos_ids:[],content:"dummy",created_by:"dummy",timestamp:"dummy",summary:"dummy",featured:true})
 Schemas.Article = new SimpleSchema({
    title:{
        type:String,
@@ -41,4 +39,3 @@ Schemas.Article = new SimpleSchema({
 Article.attachSchema(Schemas.Article);
 
 
-//Post = new Mongo.Collection('post');

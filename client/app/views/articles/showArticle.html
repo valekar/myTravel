@@ -19,13 +19,13 @@
     </div>
     <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
 
-    <!-- **********************************comment section ****************************-->
+
     <div class="container">
         <div class="row">
-            <h2 class="page-header">Comments</h2>
+
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <form action="" method="POST" role="form">
-
+                    <h2 class="page-header">Comments</h2>
 
                     <div class="form-group">
                         <label for="">Your Comment is invaluable</label>
@@ -54,13 +54,8 @@
             </div>
         </div>
     </div>
-
     <hr>
-
     <!-- this is the list of comments section-->
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -77,11 +72,15 @@
                             </figure>
                         </div>
                         <div class="col-md-10 col-sm-10">
+
                             <div class="panel panel-default arrow left">
                                 <div class="panel-body">
+                                    {{#if currentUser}}
+                                    <button class="btn btn-sm pull-right" id="removeComment">X</button>
+                                    {{/if}}
                                     <header class="text-left">
                                         <div class="comment-user"><i class="fa fa-user"></i> {{userName}}</div>
-                                        <time class="comment-date" datetime="{{created_at}}"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                        <time class="comment-date" datetime="{{created_at}}"><i class="fa fa-clock-o"></i> {{created_at}}</time>
                                     </header>
                                     <div class="comment-post">
                                         <p>
@@ -126,4 +125,8 @@
             </div>
         </div>
     </div>
+
+
+
+
 </template>

@@ -24,8 +24,10 @@ accounts-google
 accounts-twitter
 cfs:standard-packages
 cfs:filesystem
-autopublish
 percolate:momentum
 multiply:iron-router-progress
 okgrow:iron-router-autoscroll
 tmeasday:paginated-subscription
+momentjs:moment
+percolate:paginated-subscription
+mrt:smart-publish
