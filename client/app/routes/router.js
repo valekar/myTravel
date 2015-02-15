@@ -52,7 +52,7 @@ Router.map(function(){
             return [/*Meteor.subscribe('articles',Session.get('fromArticleNo')),*/
                 Meteor.subscribe('articlePhotos'),
                 Meteor.subscribe('photos'),
-                Meteor.subscribe('articleComments'),
+
                 Meteor.subscribe('adminUser',Meteor.userId())]
 
         },

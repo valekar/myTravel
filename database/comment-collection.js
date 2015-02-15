@@ -1,4 +1,4 @@
-Comment = new Mongo.Collection('comment');
+Comment = new Meteor.Collection('comment');
 Schemas = {};
 
 Schemas.comment = new SimpleSchema({

@@ -7,13 +7,13 @@ Template.homeBodyTemplate.rendered = function(){
 };
 
 Meteor.autorun(function(){
-
+    Meteor.subscribe('articles',Session.get('fromArticleNo'));
 });
 
 
 Template.allArticlesTemplate.rendered =function(){
     Session.set("noOfArticles",Article.find({featured:false}).count());
-    Meteor.subscribe('articles',Session.get('fromArticleNo'));
+
 }
 
 

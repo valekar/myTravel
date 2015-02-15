@@ -5,7 +5,7 @@
 Template.articleTemplate.helpers({
    articles:function(){
 
-       var articles  = Article.find({featured:false},{sort:{created_at:-1},limit:10}).fetch();
+       var articles  = Article.find({featured:false},{sort:{created_at:-1},limit:25}).fetch();
 
        for(var i=0;i<articles.length;i++){
            var arPhArray =ArticlePhoto.find({articleId:articles[i]._id}).fetch();
@@ -92,6 +92,13 @@ Template.showArticleTemplate.events({
             if(Meteor.userId())
             var comment = Comment.findOne({_id:this._id,userId:Meteor.userId()});
             Comment.remove({_id:comment._id});
+    },
+    'click #loadMoreComments':function(e,templ){
+        Session.set("nextComments",Session.get("nextComments")+6);
+        alert("load more comments");
+        //var handler = Session.get("commentHandle");
+        //console.log(handler);
+        //handler.ready();
     }
 });
 
@@ -111,16 +118,8 @@ Template.showArticleTemplate.helpers({
         //Sesion.get('articleid') is set in iron router
         var comments =
             Comment.
-                find({articleId:Session.get('articleId')},{sort:{created_at:-1}},
-                {skip:(2 > 0 ? ((2-1)*5) : 0)},{limit:5}).
-
-                fetch();
-
-       /* for(var i = 0;i<comment.length;i++){
-            var user = Meteor.users.find({_id:comment.userId}).fetch()[0];
-            comment[i].userName = user.username;
-            comment[i].userPicture =
-        }*/
+                find({articleId:Session.get('articleId')},{sort:{created_at:-1},limit:Session.get("nextComments")}
+            ).fetch();
 
         return comments;
     }

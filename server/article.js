@@ -25,7 +25,7 @@ Houston.methods("article",{
 
 
 Meteor.smartPublish('articles', function(fromArticle,xx) {
-    console.log("rom Articlr no :; "+ fromArticle);
+    console.log("from Article no :; "+ fromArticle);
     return [Article.find({featured:true}),
         Article.find({featured:false},{skip:fromArticle})];
 });
@@ -39,8 +39,8 @@ Meteor.publish('photos',function(){
     return Photo.find();
 });
 
-Meteor.publish('articleComments',function(){
-    return Comment.find();
+Meteor.publish('articleComments',function(limit){
+    return Comment.find({},{limit:limit});
 });
 
 Meteor.publish('adminUser',function(userId){

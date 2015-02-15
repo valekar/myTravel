@@ -27,7 +27,5 @@ cfs:filesystem
 percolate:momentum
 multiply:iron-router-progress
 okgrow:iron-router-autoscroll
-tmeasday:paginated-subscription
 momentjs:moment
-percolate:paginated-subscription
 mrt:smart-publish

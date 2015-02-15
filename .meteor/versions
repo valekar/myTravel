@@ -91,7 +91,6 @@ okgrow:iron-router-autoscroll@0.0.6
 ordered-dict@1.0.2
 pcel:loading@1.0.3
 percolate:momentum@0.7.0
-percolate:paginated-subscription@0.2.4
 percolate:velocityjs@1.1.0
 raix:eventemitter@0.1.1
 random@1.0.2
