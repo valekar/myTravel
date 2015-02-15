@@ -45,6 +45,10 @@ Template.photosTemplate.events({
         var photoId = Photo.insert({url:url,photo_uploader_id:fileId,caption:photoCaption});
         ArticlePhoto.insert({articleId:articleId,photoId:photoId,photoUrl:url,created_at:new Date()+""});
 
+    },
+    'click #insertDummyArticle':function(e,templ){
+        Article.insert({title:"dummy",content:"dummy",
+            featured:false,summary:"dummy",created_by:"admin",timestamp:"date"});
     }
 });
 

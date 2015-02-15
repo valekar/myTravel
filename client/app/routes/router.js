@@ -1,7 +1,7 @@
 
 Router.map(function(){
     /*Article mapping /article/123*/
-    this.route("/article/:_id",{
+    this.route("/article/:slug",{
 
         waitOn:function(){
           return [Meteor.subscribe('articles'),
@@ -11,10 +11,11 @@ Router.map(function(){
         },
 
         data:function(){
-            var articleId = this.params._id;
+           // var articleId = this.params._id;
+            var articleId = this.params.slug;
            // console.log(article);
            // article = {};
-            var article = Article.find({_id:articleId}).fetch()[0];
+            var article = Article.find({slug:articleId}).fetch()[0];
             //article= $.extend(article,article);
             //  console.log(article);
             if(article){
@@ -31,7 +32,7 @@ Router.map(function(){
             Session.set("showArticle",true);
             //this is used for comments
             Session.set("articleId",null);
-            Session.set("articleId",articleId);
+            Session.set("articleId",article._id);
             return tempData;
         },
 

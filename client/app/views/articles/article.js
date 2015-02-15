@@ -95,7 +95,7 @@ Template.showArticleTemplate.events({
     },
     'click #loadMoreComments':function(e,templ){
         Session.set("nextComments",Session.get("nextComments")+6);
-        alert("load more comments");
+       // alert("load more comments");
         //var handler = Session.get("commentHandle");
         //console.log(handler);
         //handler.ready();
@@ -122,6 +122,14 @@ Template.showArticleTemplate.helpers({
             ).fetch();
 
         return comments;
+    },
+    'commentCount':function(){
+        if(Comment.find({articleId:Session.get('articleId')},{limit:5}).count()>=5){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 });
 

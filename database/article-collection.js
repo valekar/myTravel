@@ -1,6 +1,7 @@
 Schemas ={};
 
 Article = new Mongo.Collection('article');
+Article.friendlySlugs('title');
 Schemas.Article = new SimpleSchema({
    title:{
        type:String,
