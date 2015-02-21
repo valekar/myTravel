@@ -2,23 +2,44 @@
 <!--Show this in the separate page-->
 
 <template name = "showArticleTemplate">
-    singularity test
 
 
 
-    <div class="media">
-        <a class="pull-left" href="#">
-            <!--Got the article from iron router data-->
-            <img class="media-object" src={{article.photoUrl}} alt="Image">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">{{article.title}}</h4>
+    <div class="container">
+        <div class="row">
+
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <h4 class="media-heading text-center">{{article.title}}</h4>
+
+                    <!--Got the article from iron router data-->
+                    <img class="img-responsive clearfix img-thumbnail" src={{article.photoUrl}} alt="Image">
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+            </div>
+
+        </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
             <p> {{article.content}}</p>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
         </div>
     </div>
-    <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
+    </div>
 
+    <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
+    </div>
 
     <div class="container">
         <div class="row">

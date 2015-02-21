@@ -6,9 +6,9 @@ Template.homeBodyTemplate.rendered = function(){
 
 };
 
-Meteor.autorun(function(){
-    Meteor.subscribe('articles',Session.get('fromArticleNo'));
-});
+/*Meteor.autorun(function(){
+    Meteor.subscribe('otherArticles');
+});*/
 
 
 Template.allArticlesTemplate.rendered =function(){

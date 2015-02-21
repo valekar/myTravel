@@ -4,23 +4,31 @@ Router.map(function(){
     this.route("/article/:slug",{
 
         waitOn:function(){
-          return [Meteor.subscribe('articles'),
+            // used in showArticle for finding the article
+                Session.set("slugWord",this.params.slug);
+          return [Meteor.subscribe('showArticle',this.params.slug),
                   Meteor.subscribe('articlePhotos'),
                   Meteor.subscribe('photos'),
-                  Meteor.subscribe('articleComments')]
-        },
+                  Meteor.subscribe('articleComments'),
+              ]
 
+        },
         data:function(){
-           // var articleId = this.params._id;
+            if(this.ready()){
+
+
             var articleId = this.params.slug;
-           // console.log(article);
-           // article = {};
+            // console.log(article);
+            // article = {};
             var article = Article.find({slug:articleId}).fetch()[0];
             //article= $.extend(article,article);
             //  console.log(article);
+            // this is for SEO
+            console.log(article);
             if(article){
+                document.title = article.title;
                 var arPhArray =ArticlePhoto.find({articleId:article._id}).fetch();
-                console.log(arPhArray);
+                // console.log(arPhArray);
                 var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
                 article.photoUrl = photoUrl;
             }
@@ -34,29 +42,40 @@ Router.map(function(){
             Session.set("articleId",null);
             Session.set("articleId",article._id);
             return tempData;
+            }
         },
 
+
+        //fastRender:true,
+
         action:function(){
+            if(this.ready()){
+
 
             this.render('commonHeaderTemplate',{to:'headerSection'});
             this.render('homeBodyTemplate',{to:'bodySection'});
             this.render('homeFootTemplate',{to:'footerSection'});
             this.layout('ApplicationLayout');
+            }
         }
     }),
         /*Home page routing / */
     this.route('/',{
 
         waitOn:function(){
-            Session.set('fromArticleNo',0);
+            var limit = Session.set('fromArticleNo',25);
+            Session.set("headerNotSet",true);
+
           //  Session.set('noOfArticles',Article.find().count());
             return [/*Meteor.subscribe('articles',Session.get('fromArticleNo')),*/
                 Meteor.subscribe('articlePhotos'),
                 Meteor.subscribe('photos'),
-
+                //Meteor.subscribe('headerArticle'),
+                Meteor.subscribe('articles'),
                 Meteor.subscribe('adminUser',Meteor.userId())]
 
         },
+        //fastRender:true,
         onBeforeAction: function () {
 
             if(Meteor.user()){
@@ -73,7 +92,8 @@ Router.map(function(){
         data:function(){
             //Session.set("showArticle",false);
             Session.set('headerArticle',true);
-
+            // this is for SEO purpose
+            document.title = "Guide a tour, Hampi tourism, tips, Karnataka, India";
             var article =  Article.find({featured:true}).fetch()[0];
             //console.log(article);
             headerArticles = {};
@@ -86,6 +106,8 @@ Router.map(function(){
             }
 
             tempData = {headerArticle:headerArticles};
+            // this is used to load the placeholder in the front page
+            Session.set("headerNotSet",false);
             return tempData;
         },
 
@@ -101,7 +123,9 @@ Router.map(function(){
     this.route('/custom_admin/photos',{
 
         waitOn:function(){
-            return [Meteor.subscribe('articles'),
+            return [
+                    //Meteor.subscribe('headerArticle'),
+                    Meteor.subscribe('articles'),
                     Meteor.subscribe('articlePhotos'),
                     Meteor.subscribe('photos'),
                     Meteor.subscribe('articleComments'),
@@ -120,6 +144,23 @@ Router.map(function(){
                 this.redirect("/",{replace:true});
             }
 
+        }
+    }),
+    this.route('/about',{
+        action:function() {
+
+            this.render('commonHeaderTemplate', {to: 'headerSection'});
+            this.render('aboutTemplate', {to: 'bodySection'});
+            this.render('homeFootTemplate', {to: 'footerSection'});
+            this.layout('ApplicationLayout');
+        }
+    }),this.route('/contact',{
+        action:function() {
+
+            this.render('commonHeaderTemplate', {to: 'headerSection'});
+            this.render('contactTemplate', {to: 'bodySection'});
+            this.render('homeFootTemplate', {to: 'footerSection'});
+            this.layout('ApplicationLayout');
         }
     });
 

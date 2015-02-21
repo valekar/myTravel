@@ -24,10 +24,33 @@ Houston.methods("article",{
 })
 
 
-Meteor.smartPublish('articles', function(fromArticle,xx) {
+/*Meteor.smartPublish('articles', function(fromArticle,xx) {
     console.log("from Article no :; "+ fromArticle);
     return [Article.find({featured:true}),
         Article.find({featured:false},{skip:fromArticle})];
+});*/
+
+
+/*
+Meteor.smartPublish('article',function(){
+  return Article.find();
+});
+*/
+
+
+/*
+Meteor.smartPublish('otherArticles',function(){
+    //console.log(fromArticle);
+   Article.find({featured:false});
+});*/
+Meteor.publish('articles',function(){
+
+    return Article.find();
+});
+
+Meteor.smartPublish('showArticle',function(slug){
+
+    return Article.find({slug:slug});
 });
 
 

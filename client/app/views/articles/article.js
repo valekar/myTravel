@@ -1,33 +1,4 @@
-/*Show the list all the articles*/
 
-
-
-Template.articleTemplate.helpers({
-   articles:function(){
-
-       var articles  = Article.find({featured:false},{sort:{created_at:-1},limit:25}).fetch();
-
-       for(var i=0;i<articles.length;i++){
-           var arPhArray =ArticlePhoto.find({articleId:articles[i]._id}).fetch();
-           var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
-            console.log(articles[i]);
-           articles[i].photoUrl = photoUrl;
-
-       }
-
-
-       return articles
-   }
-
-});
-
-
-
-
-Template.headerArticleTemplate.helpers({
-
-
-});
 
 /*used in single page showArticle */
 Template.showArticleTemplate.events({
@@ -35,7 +6,7 @@ Template.showArticleTemplate.events({
        //got back to the root
         Session.set("headerArticle",true);
        Session.set("showArticle",false);
-        Router.go("/");
+        Router.go("/",{replace:true});
    },
     'click #commentSubmit':function(e,templ){
         /*use the session userComment across templates to get the userComment*/

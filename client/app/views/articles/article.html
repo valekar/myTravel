@@ -6,10 +6,10 @@
                     <div class="panel-body " >
 
                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                           {{#if headerArticle.photoUrl.isNAN  }}
+                           {{#if headerNotImageLoaded  }}
                                <img src="/placeholder.png" class="img-responsive" />
                                {{else}}
-                               <img src={{headerArticle.photoUrl}} class="img-responsive" />
+                               <img src={{headerArticle.photoUrl}} class="img-responsive"   onerror="this.style.display='none'"/>
                             {{/if}}
                            <div class="post-content">
                                 <div class="hidden-xs ">

@@ -9,6 +9,11 @@
 .myNav{
     margin-top: -1.5% !important;
 }
+
+ a.brand-names:hover{
+    transition: none;
+}
+
 #iron-router-progress {
     background-color : #000000;
     box-shadow       : 5px 5px 5px #000000;
