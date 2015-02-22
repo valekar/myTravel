@@ -3,159 +3,156 @@
 
 <template name = "showArticleTemplate">
 
+    {{#momentum plugin='fade'}}
 
+            <div class="container">
+                <div class="row">
 
-    <div class="container">
-        <div class="row">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
-        <div class="row">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <h4 class="media-heading text-center">{{article.title}}</h4>
 
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <h4 class="media-heading text-center">{{article.title}}</h4>
+                            <!--Got the article from iron router data-->
+                            <img class="img-responsive clearfix img-thumbnail" src={{article.photoUrl}} alt="Image">
 
-                    <!--Got the article from iron router data-->
-                    <img class="img-responsive clearfix img-thumbnail" src={{article.photoUrl}} alt="Image">
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        </div>
 
-            </div>
-
-        </div>
-
-    <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-        </div>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            <p> {{article.content}}</p>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-        </div>
-    </div>
-    </div>
-
-    <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <form action="" method="POST" role="form">
-                    <h2 class="page-header">Comments</h2>
-
-                    <div class="form-group">
-                        <label for="">Your Comment is invaluable</label>
-                        <input type="text" class="form-control" name="" id="userComment" placeholder="Your Comment">
                     </div>
 
-                    <button  id = "commentSubmit" class="btn btn-primary">Post your comment</button>
-                </form>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
-                {{#momentum plugin="slide-height"}}
-                    <!-- if post your comment is clicked-->
-                    {{#if commentLogin}}
-                        <!-- check if the user is logged in -->
-                        {{#if notLoggedIn }}
-                            <div class="well well-lg">
-                                Please Help us deliver you the best service and best comments
-                                <button class="btn btn-primary" id = "facebookLogin">Login with <i class="fa fa-facebook"></i></button>
-                            </div>
-                        {{/if}}
-                    {{/if}}
-                {{/momentum}}
-
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-
-            </div>
-        </div>
-    </div>
-    <hr>
-    <!-- this is the list of comments section-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-
-                <section class="comment-list">
-                    <!-- First Comment -->
-                    {{#each articleComments}}
-
-                    <article class="row">
-                        <div class="col-md-2 col-sm-2 hidden-xs">
-                            <figure class="thumbnail">
-                                <img class="img-responsive" src="{{userPictureUrl}}" />
-                                <figcaption class="text-center">{{userName}}</figcaption>
-                            </figure>
                         </div>
-                        <div class="col-md-10 col-sm-10">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <p> {{article.content}}</p>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
-                            <div class="panel panel-default arrow left">
-                                <div class="panel-body">
-                                    {{#if currentUser}}
-                                    <button class="btn btn-sm pull-right" id="removeComment">X</button>
-                                    {{/if}}
-                                    <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i> {{userName}}</div>
-                                        <time class="comment-date" datetime="{{created_at}}"><i class="fa fa-clock-o"></i> {{created_at}}</time>
-                                    </header>
-                                    <div class="comment-post">
-                                        <p>
-                                            {{commentContent}}
-                                        </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id = "goBacktoHome">Go back</button>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <form action="" method="POST" role="form">
+                            <h2 class="page-header">Comments</h2>
+
+                            <div class="form-group">
+                                <label for="">Your Comment is invaluable</label>
+                                <input type="text" class="form-control" name="" id="userComment" placeholder="Your Comment">
+                            </div>
+
+                            <button  id = "commentSubmit" class="btn btn-primary">Post your comment</button>
+                        </form>
+
+                        {{#momentum plugin="slide-height"}}
+                            <!-- if post your comment is clicked-->
+                            {{#if commentLogin}}
+                                <!-- check if the user is logged in -->
+                                {{#if notLoggedIn }}
+                                    <div class="well well-lg">
+                                        Please Help us deliver you the best service and best comments
+                                        <button class="btn btn-primary" id = "facebookLogin">Login with <i class="fa fa-facebook"></i></button>
                                     </div>
-                                    <!--<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    {{/each}}
+                                {{/if}}
+                            {{/if}}
+                        {{/momentum}}
 
-                    {{#if commentCount}}
-                    <button class="btn btn-primary text-center pull-right" id = "loadMoreComments">Load More Comments</button>
-                    {{/if}}
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
-
-                    <!-- Second Comment Reply -->
-                   <!-- <article class="row">
-                        <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-                            <figure class="thumbnail">
-                                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                                <figcaption class="text-center">username</figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-9 col-sm-9">
-                            <div class="panel panel-default arrow left">
-                                <div class="panel-heading right">Reply</div>
-                                <div class="panel-body">
-                                    <header class="text-left">
-                                        <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                                    </header>
-                                    <div class="comment-post">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div>
-                                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>-->
-
-
-                </section>
+                    </div>
+                </div>
             </div>
+            <hr>
+            <!-- this is the list of comments section-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <section class="comment-list">
+                            <!-- First Comment -->
+                            {{#each articleComments}}
+
+                                <article class="row">
+                                    <div class="col-md-2 col-sm-2 hidden-xs">
+                                        <figure class="thumbnail">
+                                            <img class="img-responsive" src="{{userPictureUrl}}" />
+                                            <figcaption class="text-center">{{userName}}</figcaption>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10">
+
+                                        <div class="panel panel-default arrow left">
+                                            <div class="panel-body">
+                                                {{#if currentUser}}
+                                                    <button class="btn btn-sm pull-right" id="removeComment">X</button>
+                                                {{/if}}
+                                                <header class="text-left">
+                                                    <div class="comment-user"><i class="fa fa-user"></i> {{userName}}</div>
+                                                    <time class="comment-date" datetime="{{created_at}}"><i class="fa fa-clock-o"></i> {{created_at}}</time>
+                                                </header>
+                                                <div class="comment-post">
+                                                    <p>
+                                                        {{commentContent}}
+                                                    </p>
+                                                </div>
+                                                <!--<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            {{/each}}
+
+                            {{#if commentCount}}
+                                <button class="btn btn-primary text-center pull-right" id = "loadMoreComments">Load More Comments</button>
+                            {{/if}}
 
 
+                            <!-- Second Comment Reply -->
+                            <!-- <article class="row">
+                                 <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
+                                     <figure class="thumbnail">
+                                         <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                                         <figcaption class="text-center">username</figcaption>
+                                     </figure>
+                                 </div>
+                                 <div class="col-md-9 col-sm-9">
+                                     <div class="panel panel-default arrow left">
+                                         <div class="panel-heading right">Reply</div>
+                                         <div class="panel-body">
+                                             <header class="text-left">
+                                                 <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                                             </header>
+                                             <div class="comment-post">
+                                                 <p>
+                                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                 </p>
+                                             </div>
+                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </article>-->
 
-        </div>
-    </div>
 
+                        </section>
+                    </div>
+                </div>
+            </div>
+    {{/momentum}}
 
 
 
