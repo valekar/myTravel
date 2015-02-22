@@ -1,0 +1,36 @@
+<template name = "bookingTemplate">
+
+    <!-- Small modal -->
+    <button type="button" class="btn btn-primary fixed-contact"
+            data-toggle="modal" data-target=".myContactModal">Contact Us</button>
+
+    <div class="modal fade myContactModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Give Me More Info</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="" id="customerName" placeholder="Your Name ">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="" id="customerPhoneNumber" placeholder="Your Phone number">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id = "bookCustomer">Inform Me !</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+</template>

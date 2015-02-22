@@ -1,20 +1,15 @@
 Schemas = {};
 Booking = new Mongo.Collection('booking');
 Schemas.Booking = new SimpleSchema({
-   booked_by:{
+   customerName:{
        type:String,
        optional:false,
-       label:"Booked By"
+       label:"Customer Name"
    } ,
-    booked_at:{
+    customerPhoneNumber:{
         type:String,
         optional:false,
-        label:"Booking Date"
-    },
-    destination:{
-        type: String,
-        optional:false,
-        label:"Destination"
+        label:"Customer Phone Number"
     }
 });
 
