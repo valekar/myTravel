@@ -4,12 +4,12 @@ var rootDataFile = function HeaderLogicFunction(){
     Session.set('headerArticle',true);
     // this is for SEO purpose
     document.title = "Guide a tour, Hampi tourism, tips, Karnataka, India";
-    var article =  Article.find({featured:true}).fetch()[0];
+    var article =  Article.find({featured:true},{reactive:false}).fetch()[0];
     //console.log(article);
     headerArticles = {};
     headerArticles= $.extend(headerArticles,article);
     if(article){
-        var arPhArray =ArticlePhoto.find({articleId:article._id}).fetch();
+        var arPhArray =ArticlePhoto.find({articleId:article._id},{reactive:false}).fetch();
         var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
         headerArticles.photoUrl = photoUrl;
         //console.log(headerArticles);
@@ -31,14 +31,14 @@ var articleDataFile = function(){
         var articleId = this.params.slug;
         // console.log(article);
         // article = {};
-        var article = Article.find({slug:articleId}).fetch()[0];
+        var article = Article.find({slug:articleId},{reactive:false}).fetch()[0];
         //article= $.extend(article,article);
         //  console.log(article);
         // this is for SEO
-        console.log(article);
+        //console.log(article);
         if(article){
-            document.title = article.title;
-            var arPhArray =ArticlePhoto.find({articleId:article._id}).fetch();
+           // document.title = article.title;
+            var arPhArray =ArticlePhoto.find({articleId:article._id},{reactive:false}).fetch();
             // console.log(arPhArray);
             var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
             article.photoUrl = photoUrl;
@@ -87,16 +87,38 @@ Router.map(function(){
               ]
 
         },
+        cache: 5,
+        expire:3,
         data:articleDataFile,
-        //fastRender:true,
+        fastRender:true,
         action:function(){
             if(this.ready()){
 
-            this.render('commonHeaderTemplate',{to:'headerSection'});
+            //this.render('commonHeaderTemplate',{to:'headerSection'});
             this.render('showArticleTemplate',{to:'bodySection'});
-            this.render('homeFootTemplate',{to:'footerSection'});
+           // this.render('homeFootTemplate',{to:'footerSection'});
             this.layout('ApplicationLayout');
             }
+        },
+        onAfterAction:function(){
+            if(this.ready()){
+                var article = this.data().article;
+                //console.log("after action!");
+                //console.log(article);
+
+                SEO.set({
+                    title: article.title,
+                    meta: {
+                        'description': article.summary,
+                        'keywords':article.title
+                    },
+                    og: {
+                        'title': article.title,
+                        'description': article.summary
+                    }
+                });
+            }
+
         }
     }),
         /*Home page routing / */
@@ -110,7 +132,9 @@ Router.map(function(){
             return rootArraySubscribe;
 
         },
-        //fastRender:true,
+        cache: 5,
+        expire:3,
+        fastRender:true,
         onBeforeAction: function () {
 
             if(Meteor.user()){
@@ -127,10 +151,29 @@ Router.map(function(){
         data:rootDataFile,
         action:function(){
             if(this.ready()){
-                this.render('commonHeaderTemplate',{to:'headerSection'});
+              //  this.render('commonHeaderTemplate',{to:'headerSection'});
                 this.render('allArticlesTemplate',{to:'bodySection'});
-                this.render('homeFootTemplate',{to:'footerSection'});
+                //this.render('homeFootTemplate',{to:'footerSection'});
                 this.layout('ApplicationLayout');
+            }
+
+        },onAfterAction:function(){
+            if(this.ready()){
+                var article = this.data().headerArticle;
+                //console.log("after action!");
+                //console.log(article);
+
+                SEO.set({
+                    title: article.title,
+                    meta: {
+                        'description': article.summary,
+                        'keywords':article.title
+                    },
+                    og: {
+                        'title': article.title,
+                        'description': article.summary
+                    }
+                });
             }
 
         }
@@ -149,15 +192,16 @@ Router.map(function(){
                 Meteor.subscribe('adminUser',Meteor.userId())
                     ]
         },
+        cache: true,
         action:function(){
             if(Meteor.user()){
-                this.render('commonHeaderTemplate',{to:'headerAdminSection'});
+                //this.render('commonHeaderTemplate',{to:'headerAdminSection'});
                 this.render('adminBodyTemplate',{to:'bodyAdminSection'});
-                this.render('adminFootTemplate',{to:'footerAdminSection'});
+                //this.render('adminFootTemplate',{to:'footerAdminSection'});
                 this.layout('AdminLayout');
             }
             else{
-                this.redirect("/",{replace:true});
+                this.redirect("/");
             }
 
         }
@@ -165,20 +209,12 @@ Router.map(function(){
     this.route('/about',{
         action:function() {
 
-            this.render('commonHeaderTemplate', {to: 'headerSection'});
+           // this.render('commonHeaderTemplate', {to: 'headerSection'});
             this.render('aboutTemplate', {to: 'bodySection'});
-            this.render('homeFootTemplate', {to: 'footerSection'});
+            //this.render('homeFootTemplate', {to: 'footerSection'});
             this.layout('ApplicationLayout');
         }
-    }),this.route('/contact',{
-        action:function() {
-
-            this.render('commonHeaderTemplate', {to: 'headerSection'});
-            this.render('contactTemplate', {to: 'bodySection'});
-            this.render('homeFootTemplate', {to: 'footerSection'});
-            this.layout('ApplicationLayout');
-        }
-    });
+    })
 
 });
 

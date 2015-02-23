@@ -3,13 +3,18 @@ Booking = new Mongo.Collection('booking');
 Schemas.Booking = new SimpleSchema({
    customerName:{
        type:String,
-       optional:false,
+       optional:true,
        label:"Customer Name"
    } ,
-    customerPhoneNumber:{
+    customerEmailId:{
         type:String,
         optional:false,
-        label:"Customer Phone Number"
+        label:"Customer Email Id"
+    },
+    customerMesage:{
+        type:String,
+        optional:false,
+        label:"Customer Message"
     }
 });
 

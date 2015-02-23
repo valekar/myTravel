@@ -7,7 +7,8 @@ Template.bookingTemplate.events({
 
 
            var name = $("#customerName").val();
-          var phoneNumber = Number($("#customerPhoneNumber").val());
+          var emailId = $("#customerEmail").val();
+            var message = $("#customerMessage").val();
 
            // alert(phoneNumber);
 
@@ -15,12 +16,16 @@ Template.bookingTemplate.events({
               alert("Please enter your name");
               return
           }
-          if(phoneNumber == 0){
+          if(emailId <= 0){
 
-              alert("Please enter your phone number");
+              alert("Please enter your Email Id, So that we can reply you back");
               return
           }
-       Booking.insert({customerName:name,customerPhoneNumber:phoneNumber});
+        if(message<=0){
+            alert("Please enter your message Or Enter your feedback");
+            return
+        }
+       Booking.insert({customerName:name,customerEmailId:emailId,customerMessage:message});
        alert("Thanks for registering. We will contact you soon");
        $('.myContactModal').modal('hide');
 
