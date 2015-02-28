@@ -42,13 +42,32 @@ Template.photosTemplate.events({
         var articleId = $('input[name=articleIdRadio]:checked').val();
         var photoCaption = $('#photoCaption').val();
 
-        var photoId = Photo.insert({url:url,photo_uploader_id:fileId,caption:photoCaption});
-        ArticlePhoto.insert({articleId:articleId,photoId:photoId,photoUrl:url,created_at:new Date()+""});
+        Meteor.call('insertPhoto',Meteor.userId(),url,fileId,photoCaption,function(err,result){
+            if(err){
+                console.log(err);
+            }else{
+             Meteor.call('insertArticlePhoto',Meteor.userId(),articleId,
+                 result,url,moment().format('MMMM Do YYYY, h:mm:ss a')+"",function(err,result){
+                     if(err){
+                         console.log(err);
+                     }
+
+             });
+            }
+        });
+
+       // var photoId = Photo.insert({url:url,photo_uploader_id:fileId,caption:photoCaption});
+        //ArticlePhoto.insert({articleId:articleId,photoId:photoId,photoUrl:url,created_at:new Date()+""});
 
     },
     'click #insertDummyArticle':function(e,templ){
-        Article.insert({title:"dummy",content:"dummy",
-            featured:false,summary:"dummy",created_by:"admin",timestamp:"date"});
+        Meteor.call('insertDummyArticle',Meteor.userId(),function(err,result){
+            if(err){
+                console.log(err);
+            }
+        });
+       // Article.insert({title:"dummy",content:"dummy",
+         //   featured:false,summary:"dummy",created_by:"admin",timestamp:"date"});
     }
 });
 
@@ -73,6 +92,6 @@ Template.adminBodyTemplate.helpers({
 function findUrl(fileId){
     var url = Photo_Uploads.find({_id:fileId}).fetch()[0].url();
 
-    console.log("URRLL :: "+url);
+   // console.log("URRLL :: "+url);
     return url;
 }

@@ -108,8 +108,28 @@ Template.showArticleTemplate.helpers({
 function commentLogic(){
     var userComment = Session.get('userComment');
     var user = Meteor.user();
-    var comment = Comment.insert({userId:user._id,userName:user.profile.name,
-        userPictureUrl: user.profile.picture,articleId:Session.get('articleId'),
-        repliedToId:null,commentContent:userComment,created_at:moment().format('MMMM Do YYYY, h:mm:ss a')+""});
+    var comment = {userId:user._id,
+            userName:user.profile.name,
+            userPictureUrl: user.profile.picture,
+            articleId:Session.get('articleId'),
+            repliedToId:null,
+            commentContent:userComment,
+            created_at:moment().format('MMMM Do YYYY, h:mm:ss a')+""
+        };
+
+
+    if(Meteor.userId()){
+       Meteor.call('insertComment',comment,function(err,res){
+           if(res){
+               console.log(res);
+           }
+           else{
+               console.log(err);
+           }
+       }) ;
+    }
+   // var comment = Comment.insert({userId:user._id,userName:user.profile.name,
+       // userPictureUrl: user.profile.picture,articleId:Session.get('articleId'),
+        //repliedToId:null,commentContent:userComment,created_at:moment().format('MMMM Do YYYY, h:mm:ss a')+""});
     //alert("commentId"+ comment);
 }

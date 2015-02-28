@@ -7,7 +7,7 @@ Meteor.startup(function() {
     Photo_Uploads.allow({
         insert:function(userId,doc){
             //console.log(userId);
-            //if(userId === Houston._admins.find().fetch()[0].user_id)
+            if(userId === Houston._admins.find().fetch()[0].user_id)
             return true;
             //else
             //  return false;

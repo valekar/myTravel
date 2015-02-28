@@ -194,11 +194,17 @@ Router.map(function(){
         },
         cache: true,
         action:function(){
-            if(Meteor.user()){
-                //this.render('commonHeaderTemplate',{to:'headerAdminSection'});
-                this.render('adminBodyTemplate',{to:'bodyAdminSection'});
-                //this.render('adminFootTemplate',{to:'footerAdminSection'});
-                this.layout('AdminLayout');
+            if(Meteor.userId()){
+                if(!(Houston._admins.find().fetch().length === 0)){
+                    this.render('commonHeaderTemplate',{to:'headerAdminSection'});
+                    this.render('adminBodyTemplate',{to:'bodyAdminSection'});
+                    //this.render('adminFootTemplate',{to:'footerAdminSection'});
+                    this.layout('AdminLayout');
+                }
+                else{
+                    this.redirect("/");
+                }
+
             }
             else{
                 this.redirect("/");
