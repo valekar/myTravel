@@ -3,7 +3,7 @@ var rootDataFile = function HeaderLogicFunction(){
     //Session.set("showArticle",false);
     Session.set('headerArticle',true);
     // this is for SEO purpose
-    document.title = "Guide a tour, Hampi tourism, tips, Karnataka, India";
+    document.title = "Guide a tour, Hampi tourism, book rooms, Karnataka, India";
     var article =  Article.find({featured:true},{reactive:false}).fetch()[0];
     //console.log(article);
     headerArticles = {};
@@ -125,7 +125,7 @@ Router.map(function(){
     this.route('/',{
 
         waitOn:function(){
-            var limit = Session.set('fromArticleNo',25);
+           // var limit = Session.set('fromArticleNo',25);
             Session.set("headerNotSet",true);
 
           //  Session.set('noOfArticles',Article.find().count());

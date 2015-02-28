@@ -1,3 +1,9 @@
+/*
+* This js mainly contains logic for article.html
+* (article Template which lists all the templates after headerArticle)
+*
+* */
+
 Template.homeBodyTemplate.helpers({
    'headerArticle':function(){
        return Session.get("headerArticle");
@@ -6,12 +12,8 @@ Template.homeBodyTemplate.helpers({
     }
 });
 
-Template.showArticleTemplate.events({
 
-
-});
-
-// for pagination
+/*// for pagination
 Template.allArticlesTemplate.events({
     'click #articleNext':function(e,templ){
 
@@ -22,29 +24,7 @@ Template.allArticlesTemplate.events({
 
 
     }
-});
-
-/*Show the list all the articles*/
-Template.articleTemplate.helpers({
-    articles:function(){
-
-        var articles  = Article.find({featured:false},{sort:{created_at:-1},
-            limit:Session.get('fromArticleNo')}).fetch();
-
-        for(var i=0;i<articles.length;i++){
-            var arPhArray =ArticlePhoto.find({articleId:articles[i]._id}).fetch();
-            var photoUrl =arPhArray[arPhArray.length-1].photoUrl;
-            //  console.log(articles[i]);
-            articles[i].photoUrl = photoUrl;
-
-        }
-
-
-        return articles
-    }
-
-});
-
+});*/
 
 
 

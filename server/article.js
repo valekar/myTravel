@@ -43,9 +43,9 @@ Meteor.smartPublish('otherArticles',function(){
     //console.log(fromArticle);
    Article.find({featured:false});
 });*/
-Meteor.publish('articles',function(){
-
-    return Article.find();
+Meteor.publish('articles',function(limit){
+    Meteor._sleepForMs(500);
+    return Article.find({},{limit:limit});
 });
 
 Meteor.smartPublish('showArticle',function(slug){

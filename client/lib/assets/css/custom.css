@@ -176,3 +176,18 @@
     height: 10%;
     width: 10%;
 }
+
+
+
+.loading{
+    position: relative;
+    height: 100px;
+    width: 100%;
+}
+.load-more{
+    text-align:center;
+    background:#eee;
+    border: 1px solid #ddd;
+    display:block;
+    padding: 10px;
+}

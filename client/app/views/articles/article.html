@@ -58,6 +58,15 @@
 
     </div>
 
+    {{#if isReady}}
+        {{#if hasMorePosts}}
+            <a class="load-more" href="#">Load More</a>
+        {{/if}}
+    {{else}}
+        <div class="loading">{{>spinner}}</div>
+    {{/if}}
+
+
 </template>
 
 
